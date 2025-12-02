@@ -25,13 +25,18 @@ LIB    := $(LIBDIR)/$(LIBNAME)
 
 # --- Sources et objets -------------------------------------------------------
 SRCS :=	src/main.c \
-		src/ft_pars.c \
-		src/ft_pars_utils.c \
-		src/ft_bench.c \
-		src/ft_sort.c \
-		src/ft_scoring.c \
-		src/ft_move.c \
-		src/ft_move_utils.c
+		src/pars/ft_pars.c \
+		src/pars/ft_pars_utils.c \
+		src/Lis/lis.c \
+		src/Lis/lis_utils.c \
+		src/moves/push.c \
+		src/moves/rotate.c \
+		src/moves/rrotate.c \
+		src/moves/aply.c \
+		src/turc/turc.c \
+		src/turc/math.c \
+		src/init_b.c \
+		src/a_del.c \
 
 
 OBJS := $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)

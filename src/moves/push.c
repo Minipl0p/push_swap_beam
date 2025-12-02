@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   beam_select.c                                      :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pchazalm <pchazalm@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: tonlogin <tonlogin@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/25 14:34:26 by pchazalm          #+#    #+#             */
-/*   Updated: 2025/11/25 15:48:36 by pchazalm         ###   ########.fr       */
+/*   Created: 2025/11/28 15:29:18 by tonlogin          #+#    #+#             */
+/*   Updated: 2025/12/02 13:02:09 by tonlogin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_pushswap.h"
 
-t_beam	select_candidates(t_stack *a, t_stack *b, int n)
+static void	push(t_list **src, t_list **dst)
 {
+	t_list	*tmp;
 
+	if (!src || !*src)
+		return ;
+	tmp = *src;
+	*src = (*src)->next;
+	tmp->next = *dst;
+	*dst = tmp;
 }
 
-void	insert_sorted(t_state *arr, t_state new, int *size, int max)
+void	pa(t_list **a, t_list **b)
 {
-
+	push(b, a);
+	write(1, "pa\n", 3);
 }
 
-void	trim_beam(t_beam *beam, int n)
+void	pb(t_list **a, t_list **b)
 {
-
+	push(a, b);
+	write(1, "pb\n", 3);
 }

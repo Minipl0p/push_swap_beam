@@ -6,13 +6,13 @@
 /*   By: pchazalm <pchazalm@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 10:08:15 by pchazalm          #+#    #+#             */
-/*   Updated: 2025/11/14 12:27:33 by pchazalm         ###   ########.fr       */
+/*   Updated: 2025/12/02 13:04:31 by tonlogin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "../../libft/libft.h"
 #include <stdlib.h>
-#include "../header/push_swap.h"
+#include "../../header/ft_pushswap.h"
 
 void	ft_free_clear(t_list *lst, t_content *content)
 {
@@ -65,11 +65,10 @@ int	ft_check_double(t_list *lst)
 
 t_list	*ft_init_lst(char *str)
 {
-	t_list		*lst;
-	t_content	*content;
-	t_list		*elem;
+	static t_list	*lst = NULL;
+	t_content		*content;
+	t_list			*elem;
 
-	lst = NULL;
 	while (*str && *(ft_skip_char(str, ' ', 0)) != '\0')
 	{
 		str = ft_skip_char(str, ' ', 0);
@@ -80,6 +79,7 @@ t_list	*ft_init_lst(char *str)
 			return (NULL);
 		}
 		content->value = ft_atoi(str);
+		content->is_lis = 0;
 		str = ft_skip_char(str, ' ', 1);
 		elem = ft_lstnew(content);
 		if (!elem)

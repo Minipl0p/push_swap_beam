@@ -6,12 +6,12 @@
 /*   By: pchazalm <pchazalm@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 18:52:40 by pchazalm          #+#    #+#             */
-/*   Updated: 2025/11/14 12:27:36 by pchazalm         ###   ########.fr       */
+/*   Updated: 2025/11/27 11:51:58 by tonlogin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "../header/push_swap.h"
+#include "../../libft/libft.h"
+#include "../../header/ft_pushswap.h"
 #include <limits.h>
 
 static int	ft_check_if_digit(char *join, int *i)
