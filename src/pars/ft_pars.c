@@ -6,7 +6,7 @@
 /*   By: pchazalm <pchazalm@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 18:52:40 by pchazalm          #+#    #+#             */
-/*   Updated: 2025/11/27 11:51:58 by tonlogin         ###   ########.fr       */
+/*   Updated: 2025/12/17 17:39:08 by miniplop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,14 @@ char	*ft_pars(int ac, char **av)
 	int		i;
 	int		err;
 
+	err = is_args_valid(av);
 	join = ft_join_wish(ac, av);
-	i = 0;
-	if (!join)
+	if (!join || !err)
 		return (NULL);
 	err = ft_is_in_limits(join);
 	if (err == 0)
 		return (NULL);
+	i = 0;
 	while (join[i])
 	{
 		ft_skip_space(join, &i);

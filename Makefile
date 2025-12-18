@@ -27,16 +27,19 @@ LIB    := $(LIBDIR)/$(LIBNAME)
 SRCS :=	src/main.c \
 		src/pars/ft_pars.c \
 		src/pars/ft_pars_utils.c \
+		src/pars/ft_pars_tool.c \
 		src/Lis/lis.c \
 		src/Lis/lis_utils.c \
 		src/moves/push.c \
 		src/moves/rotate.c \
 		src/moves/rrotate.c \
+		src/moves/swap.c \
 		src/moves/aply.c \
 		src/turc/turc.c \
 		src/turc/math.c \
+		src/mini_sort/mini_sort.c \
+		src/mini_sort/mini_sort_utils.c \
 		src/init_b.c \
-		src/a_del.c \
 
 
 OBJS := $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
@@ -53,29 +56,29 @@ MKDIR   := mkdir -p
 all: libs $(NAME)
 
 $(NAME): $(OBJS) $(LIB)
-	@echo "$(BLUE)🔗 Linking $@...$(NC)"
+	@printf "$(BLUE)🔗 Linking $@...$(NC)\n"
 	@$(CC) $(CFLAGS) $(OBJS) -L$(LIBDIR) -l:$(LIBNAME) -o $@
-	@echo "$(GREEN)✅ Built $@$(NC)"
+	@printf "$(GREEN)✅ Built $@$(NC)\n"
 
 libs:
-	@echo "$(BLUE)📦 Building library in $(LIBDIR)...$(NC)"
+	@printf "$(BLUE)📦 Building library in $(LIBDIR)...$(NC)\n"
 	@$(LIBMAKE)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@$(MKDIR) $(dir $@)
-	@echo "$(YELLOW)🔨 Compiling $< -> $@$(NC)"
+	@printf "$(YELLOW)🔨 Compiling $< -> $@$(NC)\n"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo "$(RED)🧹 Cleaning objects...$(NC)"
+	@printf "$(RED)🧹 Cleaning objects...$(NC)\n"
 	@$(RM) $(OBJDIR)
 
 libclean:
-	@echo "$(RED)🧹 Cleaning lib in $(LIBDIR)...$(NC)"
+	@printf "$(RED)🧹 Cleaning lib in $(LIBDIR)...$(NC)\n"
 	@$(LIBMAKE) clean
 
 fclean: clean libclean
-	@echo "$(RED)🗑️ Removing binary $(NAME) and library $(LIBNAME)...$(NC)"
+	@printf "$(RED)🗑️ Removing binary $(NAME) and library $(LIBNAME)...$(NC)\n"
 	@$(RM) $(NAME) $(LIB)
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: pchazalm <pchazalm@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 15:25:23 by pchazalm          #+#    #+#             */
-/*   Updated: 2025/12/02 13:40:46 by tonlogin         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:00:07 by miniplop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_cost
 
 //Pars
 char	*ft_pars(int ac, char **av);
+int		is_args_valid(char **args);
 void	ft_free_clear(t_list *lst, t_content *content);
 void	ft_skip_space(char *join, int *i);
 char	*ft_skip_char(char *str, char c, int in_out);
@@ -45,7 +46,7 @@ t_list	*ft_init_lst(char *str);
 //LIS
 int		*copy_values(t_list *lst, int size);
 void	reset_is_lis(t_list *lst);
-void	set_lis(t_list *lst);
+int		set_lis(t_list *lst);
 void	push_non_lis(t_list **a, t_list **b);
 int		is_between_lis(t_list *a, t_content *elem);
 
@@ -72,7 +73,10 @@ int		rotation_cost(int i, int size);
 int		index_of(t_list *lst, int value);
 
 //Others
-void	print_stacks(t_list *a, t_list *b);
+void	min_to_top(t_list **a, int len);
+int		get_max(t_list *a);
+void	mini_sort(t_list **a, t_list **b);
+void	final_rotate(t_list **a);
 void	get_medians(t_list *a, int *med);
 int		lstsize_nonx(t_list *a, int x);
 

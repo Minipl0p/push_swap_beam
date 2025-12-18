@@ -6,7 +6,7 @@
 /*   By: tonlogin <tonlogin@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 10:34:19 by tonlogin          #+#    #+#             */
-/*   Updated: 2025/12/01 16:35:15 by tonlogin         ###   ########.fr       */
+/*   Updated: 2025/12/18 15:14:37 by miniplop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	mark_lis(t_list *lst, int *dp, int size, int max_len)
 	}
 }
 
-void	set_lis(t_list *lst)
+int	set_lis(t_list *lst)
 {
 	int	size;
 	int	*values;
@@ -90,16 +90,17 @@ void	set_lis(t_list *lst)
 	size = ft_lstsize(lst);
 	values = copy_values(lst, size);
 	if (!values)
-		return ;
+		return (0);
 	dp = calc_dp(values, size);
 	if (!dp)
 	{
 		free(values);
-		return ;
+		return (0);
 	}
 	reset_is_lis(lst);
 	max_len = find_max_dp(dp, size);
 	mark_lis(lst, dp, size, max_len);
 	free(values);
 	free(dp);
+	return (1);
 }

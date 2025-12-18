@@ -82,9 +82,9 @@ all: $(NAME)
 
 # Création de la bibliothèque
 $(NAME): $(OBJS)
-	@echo "${BLUE}📦 Building $(NAME)...${NC}"
+	@printf "${BLUE}📦 Building $(NAME)...${NC}\n"
 	@$(AR) $(NAME) $(OBJS) > /dev/null 2>&1
-	@echo "${GREEN}✅ $(NAME) built successfully!${NC}"
+	@printf "${GREEN}✅ $(NAME) built successfully!${NC}\n"
 
 # Compilation des fichiers .c en .o (sans afficher les commandes)
 %.o: %.c
@@ -92,12 +92,12 @@ $(NAME): $(OBJS)
 
 # Nettoyage des objets
 clean:
-	@echo "${RED}🧹 Cleaning object files...${NC}"
+	@printf "${RED}🧹 Cleaning object files...${NC}\n"
 	@rm -f $(OBJS) 2> /dev/null
 
 # Nettoyage complet (objets + bibliothèque)
 fclean: clean
-	@echo "${RED}🗑️ Removing $(NAME)...${NC}"
+	@printf "${RED}🗑️ Removing $(NAME)...${NC}\n"
 	@rm -f $(NAME) 2> /dev/null
 
 # Rebuild

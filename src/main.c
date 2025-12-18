@@ -6,7 +6,7 @@
 /*   By: pchazalm <pchazalm@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:37:57 by pchazalm          #+#    #+#             */
-/*   Updated: 2025/12/02 13:37:16 by tonlogin         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:01:12 by miniplop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,6 @@ static t_cost	find_best_cost(t_cost *c, int n)
 	return (best);
 }
 
-static void	final_rotate(t_list **a)
-{
-	int	i;
-	int	size;
-
-	i = index_of(*a, find_min(*a));
-	size = ft_lstsize(*a);
-	if (i <= size / 2)
-		while (i-- > 0)
-			ra(a);
-	else
-		while (i++ < size)
-			rra(a);
-}
-
 static t_list	*ft_do_lst(int ac, char **av)
 {
 	char	*str;
@@ -50,11 +35,15 @@ static t_list	*ft_do_lst(int ac, char **av)
 
 	str = ft_pars(ac, av);
 	if (!str)
+	{
+		ft_puterror();
 		return (NULL);
+	}
 	lst = ft_init_lst(str);
 	if (!ft_check_double(lst))
 	{
 		ft_puterror();
+		ft_lstclear(&lst, free);
 		return (NULL);
 	}
 	return (lst);
@@ -80,30 +69,49 @@ static int	apply_turk(t_list **a, t_list **b)
 	return (1);
 }
 
+int	main_2(t_list **a, t_list **b)
+{
+	static int	err = 1;
+
+	err = set_lis(*a);
+	if (!err)
+	{
+		ft_lstclear(a, free);
+		ft_lstclear(b, free);
+		return (1);
+	}
+	push_non_lis(a, b);
+	err = apply_turk(a, b);
+	if (!err)
+	{
+		ft_lstclear(a, free);
+		ft_lstclear(b, free);
+		return (1);
+	}
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
-	t_list	*a;
-	t_list	*b;
-	int		err;
+	t_list		*a;
+	t_list		*b;
+	static int	err = 0;
 
 	if (ac < 2)
-		return (0);
+		return (1);
 	a = ft_do_lst(ac, av);
 	if (!a)
 		return (1);
-	set_lis(a);
 	b = NULL;
-	push_non_lis(&a, &b);
-	err = apply_turk(&a, &b);
-	if (!err)
+	if (ft_lstsize(a) <= 5)
 	{
-		ft_puterror();
-		ft_lstclear(&a, free);
-		ft_lstclear(&b, free);
-		return (1);
+		mini_sort(&a, &b);
+		return (0);
 	}
+	err = main_2(&a, &b);
+	if (err)
+		return (1);
 	final_rotate(&a);
-	// print_stacks(a, b);
 	ft_lstclear(&a, free);
 	return (0);
 }

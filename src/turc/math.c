@@ -6,7 +6,7 @@
 /*   By: tonlogin <tonlogin@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:45:55 by tonlogin          #+#    #+#             */
-/*   Updated: 2025/12/02 13:36:19 by tonlogin         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:00:25 by miniplop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,19 @@ int	rotation_cost(int i, int size)
 	if (i <= size / 2)
 		return (i);
 	return ((i - size));
+}
+
+void	final_rotate(t_list **a)
+{
+	int	i;
+	int	size;
+
+	i = index_of(*a, find_min(*a));
+	size = ft_lstsize(*a);
+	if (i <= size / 2)
+		while (i-- > 0)
+			ra(a);
+	else
+		while (i++ < size)
+			rra(a);
 }

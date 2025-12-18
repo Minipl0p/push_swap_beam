@@ -6,7 +6,7 @@
 /*   By: pchazalm <pchazalm@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 18:53:52 by pchazalm          #+#    #+#             */
-/*   Updated: 2025/11/07 12:32:01 by pchazalm         ###   ########.fr       */
+/*   Updated: 2025/12/08 18:22:49 by miniplop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_puterror(void)
 {
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 }
