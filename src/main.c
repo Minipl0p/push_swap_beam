@@ -6,7 +6,7 @@
 /*   By: pchazalm <pchazalm@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:37:57 by pchazalm          #+#    #+#             */
-/*   Updated: 2025/12/18 13:01:12 by miniplop         ###   ########.fr       */
+/*   Updated: 2025/12/18 18:53:58 by miniplop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int	apply_turk(t_list **a, t_list **b)
 	return (1);
 }
 
-int	main_2(t_list **a, t_list **b)
+static int	mega_sort(t_list **a, t_list **b)
 {
 	static int	err = 1;
 
@@ -108,7 +108,7 @@ int	main(int ac, char **av)
 		mini_sort(&a, &b);
 		return (0);
 	}
-	err = main_2(&a, &b);
+	err = mega_sort(&a, &b);
 	if (err)
 		return (1);
 	final_rotate(&a);

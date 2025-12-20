@@ -6,7 +6,7 @@
 /*   By: miniplop <miniplop@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 11:12:59 by miniplop          #+#    #+#             */
-/*   Updated: 2025/12/18 12:46:34 by miniplop         ###   ########.fr       */
+/*   Updated: 2025/12/20 14:52:32 by miniplop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,16 @@ void	min_to_top(t_list **a, int len)
 		else if (pos == 4)
 			rra(a);
 	}
+}
+
+int	is_sorted(t_list *a)
+{
+	while (a->next)
+	{
+		if (((t_content *)a->content)->value
+			> ((t_content *)a->next->content)->value)
+			return (0);
+		a = a->next;
+	}
+	return (1);
 }

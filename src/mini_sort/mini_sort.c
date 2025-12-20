@@ -6,7 +6,7 @@
 /*   By: miniplop <miniplop@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:30:12 by miniplop          #+#    #+#             */
-/*   Updated: 2025/12/18 12:51:15 by miniplop         ###   ########.fr       */
+/*   Updated: 2025/12/20 14:48:28 by miniplop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,12 @@ void	mini_sort(t_list **a, t_list **b)
 	int	size;
 
 	size = ft_lstsize(*a);
-	if (size <= 2)
+	if (is_sorted(*a))
+	{
+		ft_lstclear(a, free);
+		return ;
+	}
+	else if (size <= 2)
 		two_sort(a);
 	else if (size <= 3)
 		three_sort(a);
