@@ -1,108 +1,196 @@
-# =========================
-# Makefile pour libft (42-friendly)
-# =========================
+# ============================================================================ #
+#                                   LIBFT                                      #
+# ============================================================================ #
 
-# Couleurs ANSI
-RED    = \033[0;31m
-GREEN  = \033[0;32m
-YELLOW = \033[0;33m
-BLUE   = \033[0;34m
-NC     = \033[0m # No Color
+# --- Colors ------------------------------------------------------------------
+RED     := \033[0;31m
+GREEN   := \033[0;32m
+BLUE    := \033[0;34m
+NC      := \033[0m
 
-# Nom de la bibliothèque
-NAME = libft.a
-AR = ar -rcs
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+# --- Config ------------------------------------------------------------------
+NAME    := libft.a
+CC      := cc
+CFLAGS  := -Wall -Wextra -Werror -g
+AR      := ar rcs
+RM      := rm -rf
+MKDIR   := mkdir -p
 
-# Sources (liste existante)
-SRCS =	ft_atoi.c \
-		ft_atol.c \
-		ft_bzero.c \
-		ft_calloc.c \
-		ft_countwordsep.c \
-		ft_freenarr.c \
-		ft_isalnum.c \
-		ft_isalpha.c \
-		ft_isascii.c \
-		ft_isdigit.c \
-		ft_isprint.c \
-		ft_itoa.c \
-		ft_join_wish.c \
-		ft_lstadd_back.c \
-		ft_lstadd_front.c \
-		ft_lstclear.c \
-		ft_lstdelone.c \
-		ft_lstiter.c \
-		ft_lstlast.c \
-		ft_lstmap.c \
-		ft_lstnew.c \
-		ft_lstsize.c \
-		ft_memchr.c \
-		ft_memcmp.c \
-		ft_memcpy.c \
-		ft_memmove.c \
-		ft_memset.c \
-		ft_printf.c \
-		ft_putchar_fd.c \
-		ft_putchar_printf.c \
-		ft_putendl_fd.c \
-		ft_puterror.c \
-		ft_putnbr_base_printf.c \
-		ft_putnbr_fd.c \
-		ft_putnbr_printf.c \
-		ft_putstr_fd.c \
-		ft_putstr_printf.c \
-		ft_split.c \
-		ft_strcat.c \
-		ft_strchr.c \
-		ft_strcmp.c \
-		ft_strcpy.c \
-		ft_strdup.c \
-		ft_striteri.c \
-		ft_strjoin.c \
-		ft_strlcat.c \
-		ft_strlcpy.c \
-		ft_strlen.c \
-		ft_strmapi.c \
-		ft_strncmp.c \
-		ft_strndup.c \
-		ft_strnstr.c \
-		ft_strrchr.c \
-		ft_strtrim.c \
-		ft_substr.c \
-		ft_toupper.c \
-		ft_tolower.c
+# --- Paths -------------------------------------------------------------------
+SRCDIR  := src
+OBJDIR  := obj
+INCDIR  := include
 
-# Génération des objets
-OBJS = $(SRCS:%.c=%.o)
+# ============================================================================ #
+#                                   SOURCES                                    #
+# ============================================================================ #
 
-# Règle par défaut
-all: $(NAME)
+# --- Char --------------------------------------------------------------------
+SRCS_CHAR := \
+	src/char/ft_isalnum.c \
+	src/char/ft_isalpha.c \
+	src/char/ft_isascii.c \
+	src/char/ft_isdigit.c \
+	src/char/ft_isprint.c \
+	src/char/ft_isspace.c \
+	src/char/ft_tolower.c \
+	src/char/ft_toupper.c
 
-# Création de la bibliothèque
-$(NAME): $(OBJS)
-	@printf "${BLUE}📦 Building $(NAME)...${NC}\n"
-	@$(AR) $(NAME) $(OBJS) > /dev/null 2>&1
-	@printf "${GREEN}✅ $(NAME) built successfully!${NC}\n"
+# --- Memory ------------------------------------------------------------------
+SRCS_MEMORY := \
+	src/memory/ft_bzero.c \
+	src/memory/ft_calloc.c \
+	src/memory/ft_memchr.c \
+	src/memory/ft_memcmp.c \
+	src/memory/ft_memcpy.c \
+	src/memory/ft_memmove.c \
+	src/memory/ft_memset.c
 
-# Compilation des fichiers .c en .o (sans afficher les commandes)
-%.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@ > /dev/null 2>&1
+# --- String ------------------------------------------------------------------
+SRCS_STRING := \
+	src/string/ft_strlen.c \
+	src/string/ft_strdup.c \
+	src/string/ft_strndup.c \
+	src/string/ft_strchr.c \
+	src/string/ft_strrchr.c \
+	src/string/ft_strncmp.c \
+	src/string/ft_strcmp.c \
+	src/string/ft_strcpy.c \
+	src/string/ft_strcat.c \
+	src/string/ft_strlcpy.c \
+	src/string/ft_strlcat.c \
+	src/string/ft_strjoin.c \
+	src/string/ft_strtrim.c \
+	src/string/ft_substr.c \
+	src/string/ft_strnstr.c \
+	src/string/ft_striteri.c \
+	src/string/ft_strmapi.c \
+	src/string/ft_split.c \
+	src/string/ft_strjoin_wish.c
 
-# Nettoyage des objets
-clean:
-	@printf "${RED}🧹 Cleaning object files...${NC}\n"
-	@rm -f $(OBJS) 2> /dev/null
+# --- Convert -----------------------------------------------------------------
+SRCS_CONVERT := \
+	src/convert/ft_atoi.c \
+	src/convert/ft_atol.c \
+	src/convert/ft_atof.c \
+	src/convert/ft_itoa.c
 
-# Nettoyage complet (objets + bibliothèque)
-fclean: clean
-	@printf "${RED}🗑️ Removing $(NAME)...${NC}\n"
-	@rm -f $(NAME) 2> /dev/null
+# --- IO ----------------------------------------------------------------------
+SRCS_IO := \
+	src/io/ft_putchar_fd.c \
+	src/io/ft_putstr_fd.c \
+	src/io/ft_putendl_fd.c \
+	src/io/ft_putnbr_fd.c \
+	src/io/ft_puterror.c
 
-# Rebuild
-re: fclean all
+# --- Printf ------------------------------------------------------------------
+SRCS_PRINTF := \
+	src/printf/ft_printf.c \
+	src/printf/vd_printf.c \
+	src/printf/ft_putchar_printf.c \
+	src/printf/ft_putstr_printf.c \
+	src/printf/ft_putnbr_printf.c \
+	src/printf/ft_putnbr_base_printf.c
 
-# Cibles phony
+# --- List --------------------------------------------------------------------
+SRCS_LIST := \
+	src/list/ft_lstnew.c \
+	src/list/ft_lstadd_front.c \
+	src/list/ft_lstadd_back.c \
+	src/list/ft_lstlast.c \
+	src/list/ft_lstsize.c \
+	src/list/ft_lstdelone.c \
+	src/list/ft_lstclear.c \
+	src/list/ft_lstiter.c \
+	src/list/ft_lstmap.c
+
+# --- Utils -------------------------------------------------------------------
+SRCS_UTILS := \
+	src/utils/ft_countwordsep.c \
+	src/utils/ft_free_arr.c
+
+# --- GNL ---------------------------------------------------------------------
+SRCS_GNL := \
+	src/gnl/get_next_line.c \
+	src/gnl/get_next_line_utils.c
+
+# --- LISTDB ---------------------------------------------------------------------
+SRCS_LISTDB := \
+	src/listdb/ft_dbadd_back.c \
+	src/listdb/ft_dbadd_front.c \
+	src/listdb/ft_dbremove.c \
+	src/listdb/ft_dbnew.c \
+	src/listdb/ft_dbclear.c \
+	src/listdb/ft_dbdelone.c \
+	src/listdb/ft_dbsize.c \
+	src/listdb/ft_dbfirst.c \
+	src/listdb/ft_dbinsert_add.c \
+	src/listdb/ft_dbinsert_idx.c \
+	src/listdb/ft_dbiter.c \
+	src/listdb/ft_dblast.c \
+	src/listdb/ft_dbmap.c
+
+# --- BTREE ---------------------------------------------------------------------
+SRCS_BTREE := \
+	src/btree/btree_infix.c \
+	src/btree/btree_insert.c \
+	src/btree/btree_new.c \
+	src/btree/btree_postfix.c \
+	src/btree/btree_prefix.c \
+	src/btree/btree_search.c
+
+# --- DICT ---------------------------------------------------------------------
+SRCS_DICT := \
+	src/dict/dict_clear.c \
+	src/dict/dict_create.c \
+	src/dict/dict_destroy.c \
+	src/dict/dict_get.c \
+	src/dict/dict_hash.c \
+	src/dict/dict_iter.c \
+	src/dict/dict_remove.c \
+	src/dict/dict_set.c
+
+# --- All sources -------------------------------------------------------------
+SRCS := \
+	$(SRCS_CHAR) \
+	$(SRCS_MEMORY) \
+	$(SRCS_STRING) \
+	$(SRCS_CONVERT) \
+	$(SRCS_IO) \
+	$(SRCS_PRINTF) \
+	$(SRCS_LIST) \
+	$(SRCS_UTILS) \
+	$(SRCS_LISTDB) \
+	$(SRCS_BTREE) \
+	$(SRCS_DICT) \
+	$(SRCS_GNL)
+
+# --- Objects -----------------------------------------------------------------
+OBJS := $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+
+# ============================================================================ #
+#                                   RULES                                      #
+# ============================================================================ #
+
 .PHONY: all clean fclean re
 
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	@printf "$(BLUE)📦 Archiving $(NAME)...$(NC)\n"
+	@$(AR) $(NAME) $(OBJS)
+	@printf "$(GREEN)✅ $(NAME) ready$(NC)\n"
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@$(MKDIR) $(dir $@)
+	@$(CC) $(CFLAGS) -I$(INCDIR) -c $< -o $@
+
+clean:
+	@printf "$(RED)🧹 Cleaning objects...$(NC)\n"
+	@$(RM) $(OBJDIR)
+
+fclean: clean
+	@printf "$(RED)🗑️ Removing $(NAME)...$(NC)\n"
+	@$(RM) $(NAME)
+
+re: fclean all

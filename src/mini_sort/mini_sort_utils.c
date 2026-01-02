@@ -6,12 +6,11 @@
 /*   By: miniplop <miniplop@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 11:12:59 by miniplop          #+#    #+#             */
-/*   Updated: 2025/12/20 14:52:32 by miniplop         ###   ########.fr       */
+/*   Updated: 2026/01/02 12:35:51 by miniplop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_pushswap.h"
-#include "../../libft/libft.h"
 
 int	get_max(t_list *a)
 {

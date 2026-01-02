@@ -6,12 +6,11 @@
 /*   By: miniplop <miniplop@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:30:12 by miniplop          #+#    #+#             */
-/*   Updated: 2025/12/20 14:48:28 by miniplop         ###   ########.fr       */
+/*   Updated: 2026/01/02 12:35:52 by miniplop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/ft_pushswap.h"
-#include "../../libft/libft.h"
 
 static void	two_sort(t_list **a)
 {

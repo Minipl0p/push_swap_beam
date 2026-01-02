@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pars.c                                          :+:      :+:    :+:   */
+/*   ft_pars_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pchazalm <pchazalm@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 18:52:40 by pchazalm          #+#    #+#             */
-/*   Updated: 2026/01/02 12:32:02 by miniplop         ###   ########.fr       */
+/*   Updated: 2026/01/02 12:54:05 by miniplop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/ft_pushswap.h"
+#include "../../header/ft_pushswap_bonus.h"
 
 static int	ft_check_if_digit(char *join, int *i)
 {
@@ -74,13 +74,13 @@ static int	ft_is_in_limits(char *join)
 	return (1);
 }
 
-char	*ft_pars(int ac, char **av)
+char	*ft_pars_bns(int ac, char **av)
 {
 	char	*join;
 	int		i;
 	int		err;
 
-	err = is_args_valid(av);
+	err = is_args_valid_bns(av);
 	join = ft_join_wish(ac, av);
 	if (!join || !err)
 		return (NULL);
@@ -90,11 +90,11 @@ char	*ft_pars(int ac, char **av)
 	i = 0;
 	while (join[i])
 	{
-		ft_skip_space(join, &i);
+		ft_skip_space_bns(join, &i);
 		err = ft_check_all(join, &i);
 		if (err == 0)
 			return (NULL);
-		ft_skip_space(join, &i);
+		ft_skip_space_bns(join, &i);
 	}
 	return (join);
 }

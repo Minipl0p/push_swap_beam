@@ -6,7 +6,7 @@
 /*   By: pchazalm <pchazalm@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 15:25:23 by pchazalm          #+#    #+#             */
-/*   Updated: 2025/12/20 10:29:49 by miniplop         ###   ########.fr       */
+/*   Updated: 2026/01/02 12:33:23 by miniplop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
-# include "../libft/libft.h"
+# include "../libft/Includes/libft.h"
 
 typedef struct s_content
 {

@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pars_utils.c                                    :+:      :+:    :+:   */
+/*   ft_pars_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pchazalm <pchazalm@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 10:08:15 by pchazalm          #+#    #+#             */
-/*   Updated: 2026/01/02 12:35:30 by miniplop         ###   ########.fr       */
+/*   Updated: 2026/01/02 10:31:10 by miniplop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/ft_pushswap.h"
+#include "../../header/ft_pushswap_bonus.h"
 
-void	ft_free_clear(t_list *lst, t_content *content)
+void	ft_free_clear_bns(t_list *lst, t_content *content)
 {
 	free(content);
 	ft_lstclear(&lst, free);
 }
 
-void	ft_skip_space(char *join, int *i)
+void	ft_skip_space_bns(char *join, int *i)
 {
 	while (join[*i] == ' ')
 		(*i)++;
 }
 
-char	*ft_skip_char(char *str, char c, int in_out)
+char	*ft_skip_char_bns(char *str, char c, int in_out)
 {
 	char	*tmp;
 
@@ -42,7 +42,7 @@ char	*ft_skip_char(char *str, char c, int in_out)
 	return (tmp);
 }
 
-int	ft_check_double(t_list *lst)
+int	ft_check_double_bns(t_list *lst)
 {
 	t_list	*tmp;
 
@@ -61,15 +61,15 @@ int	ft_check_double(t_list *lst)
 	return (1);
 }
 
-t_list	*ft_init_lst(char *str)
+t_list	*ft_init_lst_bns(char *str)
 {
 	static t_list	*lst = NULL;
 	t_content		*content;
 	t_list			*elem;
 
-	while (*str && *(ft_skip_char(str, ' ', 0)) != '\0')
+	while (*str && *(ft_skip_char_bns(str, ' ', 0)) != '\0')
 	{
-		str = ft_skip_char(str, ' ', 0);
+		str = ft_skip_char_bns(str, ' ', 0);
 		content = malloc(sizeof(t_content));
 		if (!content)
 		{
@@ -78,11 +78,11 @@ t_list	*ft_init_lst(char *str)
 		}
 		content->value = ft_atoi(str);
 		content->is_lis = 0;
-		str = ft_skip_char(str, ' ', 1);
+		str = ft_skip_char_bns(str, ' ', 1);
 		elem = ft_lstnew(content);
 		if (!elem)
 		{
-			ft_free_clear(lst, content);
+			ft_free_clear_bns(lst, content);
 			return (NULL);
 		}
 		ft_lstadd_back(&lst, elem);
